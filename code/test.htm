@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #copyButton {
+    background-color: #4CAF50; /* لون أخضر */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+    </style>
+</head>
+<body>
+    <button id="copyButton">انسخ النص</button>
+    <p id="textToCopy">هذا النص سيتم نسخه</p>
+
+    <script>
+        const copyButton = document.getElementById('copyButton');
+        const textToCopy = document.getElementById('textToCopy');
+
+        copyButton.addEventListener('click', () => {
+            // تحديد النص الذي سيتم نسخه
+            const text = textToCopy.textContent;
+
+            // إنشاء عنصر نصي مؤقت
+            const tempInput = document.createElement('input');
+            document.body.appendChild(tempInput);
+            tempInput.value = text;
+
+            // تحديد النص المؤقت ونسخه
+            tempInput.select();
+            document.execCommand('copy');
+
+            // إزالة العنصر النصي المؤقت
+            document.body.removeChild(tempInput);
+
+            // عرض رسالة تأكيد (اختياري)
+            alert('تم نسخ النص بنجاح!');
+        });
+    </script>
+</body>
+</html>
